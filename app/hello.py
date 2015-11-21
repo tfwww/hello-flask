@@ -7,7 +7,7 @@ manager = Manager(app)
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	return render_template('indexa.html')
 
 @app.route('/user/<name>')
 def user(name):
