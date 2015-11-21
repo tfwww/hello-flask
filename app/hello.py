@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 manager = Manager(app)
 
-@app.route('/')
+@app.route('/index')
 def index():
-	return render_template('indexa.html')
+	return render_template('index.html')
 
 @app.route('/user/<name>')
 def user(name):
