@@ -5,6 +5,7 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
 from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.script import Shell
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 
@@ -42,6 +43,11 @@ class User(db.Model):
 class NameForm(Form):
     name = StringField('What is your name?', validators=[Required()])
     submit = SubmitField('Submit')
+
+def make_shell_context():
+	return dict(app=app, db=db, User=User, Role=Role)
+
+manager.add_command("shell", Shell(make_context=make_shell_context))
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
