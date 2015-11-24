@@ -6,6 +6,7 @@ from flask.ext.moment import Moment
 from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Shell
+from flask.ext.migrate import Migrate, MigrateCommand
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 
@@ -21,6 +22,8 @@ db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 manager = Manager(app)
 moment = Moment(app)
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 class Role(db.Model):
 	__tablename__ = 'roles'
